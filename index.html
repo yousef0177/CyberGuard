@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#060a13" />
+  <title>CyberGuard | سایبرگارد — ابزارهای آموزشی امنیت سایبری</title>
+  <meta name="description" content="ابزارهای ساده و کاربردی امنیت سایبری: بررسی قدرت رمز عبور، تولید رمز تصادفی، تحلیل لینک و ایمیل و محاسبه هش SHA-256 — همه در مرورگر شما و بدون ارسال داده." />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛡️</text></svg>" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ================= هدر ================= -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="#home" class="brand" aria-label="CyberGuard — صفحه اصلی">
+        <span class="brand-icon">🛡️</span>
+        <span class="brand-name">Cyber<span class="grad">Guard</span></span>
+      </a>
+      <nav class="nav" id="nav" aria-label="منوی اصلی">
+        <a href="#home">خانه</a>
+        <a href="#tools">ابزارها</a>
+        <a href="#protocols">پروتکل‌ها</a>
+        <a href="#tips">نکات امنیتی</a>
+        <a href="#about">درباره</a>
+      </nav>
+      <button type="button" class="menu-btn" id="menuBtn" aria-label="باز و بسته کردن منو" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ================= هیرو ================= -->
+  <section class="hero" id="home">
+    <div class="container">
+      <span class="hero-badge">🔒 همهٔ ابزارها رایگان — بدون ثبت‌نام</span>
+      <h1>امنیت دیجیتال خود را <span class="grad">تقویت کنید</span></h1>
+      <p class="hero-sub">
+        مجموعه‌ای از ابزارهای ساده و آموزشی برای امنیت آنلاین؛ بررسی قدرت رمز عبور، تولید رمز قوی،
+        تحلیل لینک‌ها و ایمیل و محاسبه هش SHA-256. تمام محاسبات به‌صورت محلی در مرورگر شما انجام می‌شود
+        و هیچ داده‌ای به سروری ارسال نمی‌گردد.
+      </p>
+      <div class="hero-actions">
+        <a href="#tools" class="btn btn-primary">🚀 شروع کنید</a>
+        <a href="#protocols" class="btn btn-ghost">📚 آموزش پروتکل‌ها</a>
+      </div>
+      <noscript><span class="noscript-note">⚠️ برای استفاده از ابزارهای این سایت، لطفاً جاوااسکریپت مرورگر خود را فعال کنید.</span></noscript>
+      <div class="hero-stats">
+        <div class="stat"><span class="stat-num">۶</span><span class="stat-label">ابزار کاربردی</span></div>
+        <div class="stat"><span class="stat-num">۱۰۰٪</span><span class="stat-label">رایگان</span></div>
+        <div class="stat"><span class="stat-num">۰</span><span class="stat-label">ارسال داده به سرور</span></div>
+        <div class="stat"><span class="stat-num">۲۴/۷</span><span class="stat-label">در دسترس</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= ابزارها ================= -->
+  <section class="section" id="tools">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-tag">✨ امکانات</span>
+        <h2>ابزارهای امنیتی</h2>
+        <p>ابزار موردنظر را انتخاب کنید و همین‌جا، در مرورگر خود از آن استفاده کنید.</p>
+      </div>
+
+      <div class="tools-grid">
+
+        <!-- ابزار ۱: بررسی قدرت رمز عبور -->
+        <article class="card tool-card reveal">
+          <div class="tool-head">
+            <span class="tool-icon">🔐</span>
+            <div>
+              <h3>بررسی تقریبی قدرت رمز عبور</h3>
+              <p>قدرت تقریبی رمز عبور خود را همین حالا بسنجید.</p>
+            </div>
+          </div>
+          <div class="field">
+            <input type="password" id="pwInput" class="input ltr" placeholder="رمز عبور خود را وارد کنید..." autocomplete="off" />
+            <button type="button" class="icon-btn" id="pwToggle" aria-label="نمایش یا پنهان کردن رمز">👁️</button>
+          </div>
+          <button type="button" class="btn btn-primary btn-block" id="pwCheckBtn">بررسی قدرت رمز</button>
+          <div class="result" id="pwResult" hidden>
+            <div class="strength-bar"><div class="strength-fill" id="pwFill"></div></div>
+            <div class="strength-row"><span id="pwLabel">—</span><span id="pwScore">۰٪</span></div>
+            <ul class="check-list" id="pwChecks"></ul>
+            <div class="note" id="pwCrack"></div>
+            <div class="note warn" id="pwWarn" hidden></div>
+          </div>
+        </article>
+
+        <!-- ابزار ۲: تولید رمز تصادفی -->
+        <article class="card tool-card reveal">
+          <div class="tool-head">
+            <span class="tool-icon">🔑</span>
+            <div>
+              <h3>تولید رمزهای تصادفی</h3>
+              <p>با یک کلیک، رمز عبور قوی و تصادفی بسازید.</p>
+            </div>
+          </div>
+          <div class="field-row">
+            <label class="field-label" for="genLength">طول رمز: <b id="genLenVal">۱۶</b> کاراکتر</label>
+            <input type="range" id="genLength" min="8" max="64" value="16" />
+          </div>
+          <div class="chips">
+            <label class="chip"><input type="checkbox" id="genUpper" checked /> حروف بزرگ (A-Z)</label>
+            <label class="chip"><input type="checkbox" id="genLower" checked /> حروف کوچک (a-z)</label>
+            <label class="chip"><input type="checkbox" id="genDigit" checked /> اعداد (0-9)</label>
+            <label class="chip"><input type="checkbox" id="genSymbol" checked /> نمادها (!@#)</label>
+          </div>
+          <div class="field">
+            <input type="text" id="genOutput" class="input ltr" readonly placeholder="روی «تولید رمز» بزنید..." autocomplete="off" />
+            <button type="button" class="icon-btn" id="genCopy" aria-label="کپی رمز تولیدشده">📋</button>
+          </div>
+          <button type="button" class="btn btn-primary btn-block" id="genBtn">🎲 تولید رمز</button>
+          <div class="result" id="genResult" hidden></div>
+        </article>
+
+        <!-- ابزار ۳: بررسی لینک -->
+        <article class="card tool-card reveal">
+          <div class="tool-head">
+            <span class="tool-icon">🌐</span>
+            <div>
+              <h3>بررسی اولیه نشانه‌های مشکوک لینک‌ها</h3>
+              <p>قبل از کلیک کردن، لینک را بررسی کنید.</p>
+            </div>
+          </div>
+          <div class="field" style="padding-left:0">
+            <input type="url" id="linkInput" class="input ltr" placeholder="https://example.com/test" autocomplete="off" />
+          </div>
+          <button type="button" class="btn btn-primary btn-block" id="linkBtn">🔎 بررسی لینک</button>
+          <div class="result" id="linkResult" hidden></div>
+        </article>
+
+        <!-- ابزار ۴: بررسی ایمیل -->
+        <article class="card tool-card reveal">
+          <div class="tool-head">
+            <span class="tool-icon">📧</span>
+            <div>
+              <h3>بررسی قالب ایمیل و نشانه‌های مشکوک</h3>
+              <p>قالب ایمیل و نشانه‌های مشکوک آن را بررسی کنید.</p>
+            </div>
+          </div>
+          <div class="field" style="padding-left:0">
+            <input type="email" id="emailInput" class="input ltr" placeholder="name@example.com" autocomplete="off" />
+          </div>
+          <button type="button" class="btn btn-primary btn-block" id="emailBtn">✉️ بررسی ایمیل</button>
+          <div class="result" id="emailResult" hidden></div>
+        </article>
+
+        <!-- ابزار ۵: هش SHA-256 -->
+        <article class="card tool-card reveal">
+          <div class="tool-head">
+            <span class="tool-icon">🔏</span>
+            <div>
+              <h3>محاسبه هش SHA-256</h3>
+              <p>اثر انگشت دیجیتال هر متن را با SHA-256 بسازید.</p>
+            </div>
+          </div>
+          <textarea id="hashInput" class="input textarea" rows="3" placeholder="متنی که می‌خواهید هش شود را اینجا بنویسید..."></textarea>
+          <div style="height:14px"></div>
+          <button type="button" class="btn btn-primary btn-block" id="hashBtn">⚙️ محاسبه هش</button>
+          <div class="result" id="hashResult" hidden>
+            <div class="hash-label">هش SHA-256:</div>
+            <div class="hash-box" id="hashOutput" dir="ltr"></div>
+            <button type="button" class="btn btn-ghost btn-sm" id="hashCopy">📋 کپی هش</button>
+          </div>
+        </article>
+
+        <!-- ابزار ۶: معرفی پروتکل‌ها -->
+        <article class="card tool-card reveal">
+          <div class="tool-head">
+            <span class="tool-icon">📚</span>
+            <div>
+              <h3>معرفی پروتکل‌های شبکه و امنیت</h3>
+              <p>با پروتکل‌های مهم شبکه و امنیت آشنا شوید.</p>
+            </div>
+          </div>
+          <p class="mini-text">
+            HTTPS، SSL/TLS، DNS، SSH، TCP/IP، SFTP، SMTP و VPN — توضیح ساده، کاربردی و فارسی هر کدام
+            در بخش پروتکل‌ها آمده است؛ مفاهیم پایه‌ای که هر کاربر اینترنت باید بداند.
+          </p>
+          <a href="#protocols" class="btn btn-ghost btn-block">📚 رفتن به بخش پروتکل‌ها</a>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= پروتکل‌ها ================= -->
+  <section class="section" id="protocols">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-tag">📚 آموزش</span>
+        <h2>پروتکل‌های شبکه و امنیت</h2>
+        <p>مفاهیم پایه‌ای که هر کاربر اینترنت باید بداند — به زبان ساده.</p>
+      </div>
+      <div class="proto-grid">
+        <article class="proto-card reveal">
+          <div class="proto-icon">🔐</div>
+          <h3>HTTPS</h3>
+          <p>نسخهٔ امن HTTP که داده‌ها را با TLS رمزنگاری می‌کند. اگر آدرس سایت با https شروع نشود، اطلاعات شما (مثل رمز عبور) می‌تواند در مسیر شنود شود.</p>
+        </article>
+        <article class="proto-card reveal">
+          <div class="proto-icon">🔒</div>
+          <h3>SSL / TLS</h3>
+          <p>پروتکل‌های رمزنگاری که امنیت ارتباط بین مرورگر و سرور را تأمین می‌کنند. TLS نسخهٔ جدیدتر و امن‌تر SSL است و پایهٔ HTTPS به شمار می‌رود.</p>
+        </article>
+        <article class="proto-card reveal">
+          <div class="proto-icon">🗂️</div>
+          <h3>DNS</h3>
+          <p>دفترچهٔ اینترنت؛ نام دامنه (مثل example.com) را به آدرس IP تبدیل می‌کند. DNS معمولی رمزنگاری ندارد؛ نسخه‌های DoH و DoT این ضعف را رفع می‌کنند.</p>
+        </article>
+        <article class="proto-card reveal">
+          <div class="proto-icon">🖥️</div>
+          <h3>SSH</h3>
+          <p>پروتکل اتصال امن به سرورها از راه دور. تمام ترافیک آن رمزنگاری می‌شود و جایگزین امنی برای Telnet قدیمی است.</p>
+        </article>
+        <article class="proto-card reveal">
+          <div class="proto-icon">🌍</div>
+          <h3>TCP / IP</h3>
+          <p>زبان مشترک اینترنت. داده‌ها را به بسته‌های کوچک تقسیم، مسیریابی و در مقصد دوباره سرهم می‌کند؛ پایهٔ تقریباً همهٔ پروتکل‌های دیگر.</p>
+        </article>
+        <article class="proto-card reveal">
+          <div class="proto-icon">📦</div>
+          <h3>SFTP</h3>
+          <p>انتقال امن فایل‌ها روی کانال رمزنگاری‌شدهٔ SSH؛ برخلاف FTP که همه‌چیز — حتی رمز عبور — را به‌صورت متن ساده می‌فرستد.</p>
+        </article>
+        <article class="proto-card reveal">
+          <div class="proto-icon">✉️</div>
+          <h3>SMTP</h3>
+          <p>پروتکل ارسال ایمیل بین سرورها. SMTP معمولی رمزنگاری ندارد و فقط همراه TLS (مثل STARTTLS) امن محسوب می‌شود.</p>
+        </article>
+        <article class="proto-card reveal">
+          <div class="proto-icon">🛡️</div>
+          <h3>VPN</h3>
+          <p>تونلی رمزنگاری‌شده بین دستگاه شما و اینترنت؛ ترافیک را در شبکه‌های ناامن (مثل وای‌فای عمومی) محافظت می‌کند و IP واقعی شما را مخفی می‌کند.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= نکات امنیتی ================= -->
+  <section class="section" id="tips">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-tag">💡 نکات</span>
+        <h2>نکات طلایی امنیت</h2>
+        <p>عادت‌های ساده‌ای که امنیت شما را چند برابر می‌کنند.</p>
+      </div>
+      <div class="tips-grid">
+        <article class="tip-card reveal">
+          <div class="tip-head"><span>🔑</span><h3>رمز منحصربه‌فرد</h3></div>
+          <p>برای هر حساب کاربری رمز متفاوتی انتخاب کنید؛ اگر یک رمز لو برود، بقیهٔ حساب‌های شما امن می‌مانند.</p>
+        </article>
+        <article class="tip-card reveal">
+          <div class="tip-head"><span>📲</span><h3>ورود دومرحله‌ای</h3></div>
+          <p>2FA را برای حساب‌های مهم فعال کنید؛ حتی با لو رفتن رمز، بدون کد دوم شخص به حساب شما راه ندارد.</p>
+        </article>
+        <article class="tip-card reveal">
+          <div class="tip-head"><span>🖱️</span><h3>لینک ناشناس؟ نه!</h3></div>
+          <p>قبل از کلیک، مقصد لینک را با ابزار همین سایت بررسی کنید؛ لینک کوتاه و دامنهٔ شبیه‌سازی‌شده نشانهٔ خطر است.</p>
+        </article>
+        <article class="tip-card reveal">
+          <div class="tip-head"><span>🔄</span><h3>به‌روزرسانی منظم</h3></div>
+          <p>مرورگر و سیستم‌عامل خود را همیشه به‌روز نگه دارید؛ بیشتر نفوذها از حفره‌های امنیتی قدیمی انجام می‌شود.</p>
+        </article>
+        <article class="tip-card reveal">
+          <div class="tip-head"><span>📶</span><h3>وای‌فای عمومی</h3></div>
+          <p>در شبکه‌های عمومی وارد حساب‌های بانکی نشوید و اگر مجبور هستید، حتماً از VPN استفاده کنید.</p>
+        </article>
+        <article class="tip-card reveal">
+          <div class="tip-head"><span>💾</span><h3>نسخه پشتیبان</h3></div>
+          <p>از اطلاعات مهم به‌صورت منظم و در دو مکان جداگانه نسخه پشتیبان بگیرید؛ تنها راه عقب‌نشینی از باج‌افزار است.</p>
+        </article>
+        <article class="tip-card reveal">
+          <div class="tip-head"><span>🎣</span><h3>فیشینگ را بشناسید</h3></div>
+          <p>پیام‌هایی که عجله ایجاد می‌کنند («حساب شما مسدود می‌شود!») تقریباً همیشه فیشینگ‌اند؛ همیشه از آدرس رسمی وارد شوید.</p>
+        </article>
+        <article class="tip-card reveal">
+          <div class="tip-head"><span>🗝️</span><h3>نگهداری امن رمزها</h3></div>
+          <p>رمزها را در یادداشت گوشی یا کاغذ کنار سیستم ننویسید؛ از مدیر رمز عبور معتبر استفاده کنید.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= درباره ================= -->
+  <section class="section" id="about">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-tag">ℹ️ درباره</span>
+        <h2>درباره سایبرگارد</h2>
+      </div>
+      <div class="about-box reveal">
+        <p>
+          سایبرگارد یک پروژهٔ آموزشی در حوزهٔ امنیت سایبری است که با هدف آموزش ساده و کاربردی مفاهیم
+          امنیت دیجیتال ساخته شده است. این سایت مجموعه‌ای از ابزارهای کاربردی را همراه با معرفی
+          پروتکل‌های امنیتی و نکات آموزشی ارائه می‌دهد تا هر کاربر، فارغ از دانش فنی، بتواند امنیت
+          خود را در فضای مجازی ارتقا دهد.
+        </p>
+        <p>
+          🔒 <b>حریم خصوصی:</b> تمام محاسبات این سایت به‌صورت محلی در مرورگر شما انجام می‌شود؛
+          هیچ داده‌ای ذخیره نمی‌شود و چیزی به سرور ارسال نمی‌گردد.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= فوتر ================= -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-brand"><span class="brand-icon">🛡️</span> <b>CyberGuard</b> — سایبرگارد</div>
+      <p class="made-by">طراحی و توسعه توسط <b>یوسف پرورش</b> 💚</p>
+      <p class="footer-note">ابزارهای این سایت جنبهٔ آموزشی و تقریبی دارند و جایگزین راهکارهای امنیتی حرفه‌ای نیستند.</p>
+      <p class="copyright">© <span id="year">۱۴۰۵</span> — همهٔ حقوق محفوظ است.</p>
+    </div>
+  </footer>
+
+  <!-- دکمه بازگشت به بالا -->
+  <button type="button" id="toTop" class="to-top" aria-label="بازگشت به بالای صفحه">↑</button>
+
+  <!-- پیام توست -->
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <script src="app.js" defer></script>
+</body>
+</html>
